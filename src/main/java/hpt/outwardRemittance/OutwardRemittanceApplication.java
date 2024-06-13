@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @SpringBootApplication
-public class OutwardRemittanceApplication implements CommandLineRunner {
+public class OutwardRemittanceApplication   {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -32,8 +32,8 @@ public class OutwardRemittanceApplication implements CommandLineRunner {
 		SpringApplication.run(OutwardRemittanceApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
+//	@Override
+//	public void run(String... args) throws Exception {
 		// accounting result : done
 //		AccountingResult accountingResult = new AccountingResult() ;
 //		accountingResult.setDescription("123");
@@ -47,10 +47,10 @@ public class OutwardRemittanceApplication implements CommandLineRunner {
 //		outwardRemittanceProcess.setDebtDate(new Date());
 //		System.out.println(databaseService.createProcessCTQTRecord(outwardRemittanceProcess) );
 
-		DocumentInfo documentInfo = new DocumentInfo();
-		documentInfo.setDocumentGroup("123");
-		documentInfo.setDocumentType("13");
-		documentInfo.setCreatedDate(new Date());
-		databaseService.updateDebInfo("ok",new Date(),"123") ;
-	}
+//		DocumentInfo documentInfo = new DocumentInfo();
+//		documentInfo.setDocumentGroup("123");
+//		documentInfo.setDocumentType("13");
+//		documentInfo.setCreatedDate(new Date());
+//		databaseService.updateDebInfo("ok",new Date(),"123") ;
+//	}
 }
