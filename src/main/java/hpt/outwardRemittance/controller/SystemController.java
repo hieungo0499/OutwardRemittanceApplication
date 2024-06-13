@@ -45,6 +45,12 @@ public class SystemController {
         return systemService.getPurposeReferenceList(parentCode);
     }
 
+    @PostMapping(path = "/purposeReferenceList1",
+            produces = "application/json")
+    public Map<String, Object> getPurposeReferenceList1(@RequestBody String parentCode) {
+        return systemService.getPurposeReferenceList(parentCode);
+    }
+
     //
     @GetMapping(path = "/feeTypeList",
             produces = "application/json")

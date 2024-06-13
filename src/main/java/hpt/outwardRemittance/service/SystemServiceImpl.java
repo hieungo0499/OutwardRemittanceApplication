@@ -105,7 +105,9 @@ public class SystemServiceImpl implements SystemService {
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         Map<String,Object> map = new HashMap<>();
         map.put("perposeRefer",rowMapper(rows));
+        System.out.println(sql);
         return map ;
+
     }
 
     @Override
