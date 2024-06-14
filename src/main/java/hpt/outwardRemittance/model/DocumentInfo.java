@@ -15,4 +15,8 @@ public class DocumentInfo {
     private String documentType ;
     private String createdBy ;
     private Date createdDate ;
+
+
+
+
 }

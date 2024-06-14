@@ -75,6 +75,12 @@ public class SystemController {
         return systemService.getApprovalType();
     }
 
+
+    @GetMapping(path = "/getGoodsList",
+            produces = "application/json")
+    public Map<String, Object> getGoodsList() {
+        return systemService.getGoodsList();
+    }
     //
 
     @PostMapping(path = "/sendMail")
@@ -86,7 +92,7 @@ public class SystemController {
            mailInfo.setToMail(toMail);
            String subject = "Thông báo giao dịch "+ caseId+ " đã được duyệt ";
            String content = "Kính gửi anh/chị,\n" ;
-           content += "Hệ thống xin thông báo giao dịch số "+caseId+" đã được phê duyệt. Vui lòng truy cập …<link xử lý>… để kiểm tra và xử lý các công việc tiếp theo.\n" ;
+           content += "Hệ thống xin thông báo giao dịch số "+caseId+" đã được phê duyệt. Vui lòng truy cập https://www.youtube.com/ để kiểm tra và xử lý các công việc tiếp theo.\n" ;
            content += "Trân trọng!\nP/S: Đây là email thông báo tự động, vui lòng không reply!" ;
            mailInfo.setSubject(subject);
            mailInfo.setContent(content);

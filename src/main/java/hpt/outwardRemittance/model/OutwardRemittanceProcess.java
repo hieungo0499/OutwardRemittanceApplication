@@ -20,4 +20,5 @@ public class OutwardRemittanceProcess {
     private Date debtDate ;
 
 
+
 }
