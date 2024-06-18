@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -85,23 +86,24 @@ public class SystemController {
 
     @PostMapping(path = "/sendMail")
 
-    public String sendMail(@RequestParam String caseId, @RequestParam String toMail ){
-       try {
-           MailInfo mailInfo = new MailInfo() ;
-           System.out.println(toMail);
-           mailInfo.setToMail(toMail);
-           String subject = "Thông báo giao dịch "+ caseId+ " đã được duyệt ";
-           String content = "Kính gửi anh/chị,\n" ;
-           content += "Hệ thống xin thông báo giao dịch số "+caseId+" đã được phê duyệt. Vui lòng truy cập https://www.youtube.com/ để kiểm tra và xử lý các công việc tiếp theo.\n" ;
-           content += "Trân trọng!\nP/S: Đây là email thông báo tự động, vui lòng không reply!" ;
-           mailInfo.setSubject(subject);
-           mailInfo.setContent(content);
-           systemService.sendMail(mailInfo) ;
-           return "Send mail completed" ;
-       }
-       catch (Exception e) {
-           return "Send mail failed" ;
-       }
+    public Map<String,Object> sendMail(@RequestParam String caseId, @RequestParam String toMail ) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            MailInfo mailInfo = new MailInfo();
+            System.out.println(toMail);
+            mailInfo.setToMail(toMail);
+            String subject = "Thông báo giao dịch " + caseId + " đã được duyệt ";
+            String content = "Kính gửi anh/chị,\n";
+            content += "Hệ thống xin thông báo giao dịch số " + caseId + " đã được phê duyệt. Vui lòng truy cập https://www.youtube.com/ để kiểm tra và xử lý các công việc tiếp theo.\n";
+            content += "Trân trọng!\nP/S: Đây là email thông báo tự động, vui lòng không reply!";
+            mailInfo.setSubject(subject);
+            mailInfo.setContent(content);
+            systemService.sendMail(mailInfo);
+            map.put("status", "Success");
+        } catch (Exception e) {
+            map.put("status", "Failed");
+        }
+        return map ;
     }
 
     @GetMapping(path = "/test",

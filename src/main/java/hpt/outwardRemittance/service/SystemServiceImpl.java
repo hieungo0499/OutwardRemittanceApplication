@@ -115,7 +115,7 @@ public class SystemServiceImpl implements SystemService {
         String sql = " select code, name FROM bpm.adm_masterdata am where group_code = 'FEE_TYPE' " ;
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         Map<String,Object> map = new HashMap<>();
-        map.put("purpose",rowMapper(rows));
+        map.put("feeType",rowMapper(rows));
         return map ;
     }
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -21,30 +22,41 @@ public class DatabaseController {
     // ok
     @PostMapping(path = "/insertAccountingResult",
             produces = "application/json")
-    public String insertAccountingResult (@RequestBody AccountingResult accountingResult) {
+    public Map<String, Object> insertAccountingResult (@RequestBody AccountingResult accountingResult) {
         System.out.println(accountingResult.getReferenceId());
-        return databaseService.insertAccountingResult(accountingResult);
+
+        String resp = databaseService.insertAccountingResult(accountingResult);
+         Map<String,Object> map = new HashMap<>();
+            map.put("status",resp);
+            return map ;
     }
     //
     @PostMapping(path = "/insertDocument",
             produces = "application/json")
-    public String insertDocument (@RequestBody DocumentInfo documentInfo) {
+    public Map<String, Object> insertDocument (@RequestBody DocumentInfo documentInfo) {
         System.out.println(documentInfo.getProcessInstance());
-        return databaseService.insertDocument(documentInfo);
+        Map<String,Object> map = new HashMap<>();
+        String resp =  databaseService.insertDocument(documentInfo);
+        map.put("status",resp);
+         return map ;
     }
     //
     @PostMapping(path = "/updateDebInfo",
             produces = "application/json")
-    public String updateDebInfo (@RequestParam String debtStatus, @RequestParam Date debtDate, @RequestParam String procesId) {
-
-        return databaseService.updateDebInfo(debtStatus,debtDate,procesId);
+    public Map<String, Object> updateDebInfo (@RequestParam String debtStatus, @RequestParam Date debtDate, @RequestParam String procesId) {
+        Map<String,Object> map = new HashMap<>();
+        String resp =  databaseService.updateDebInfo(debtStatus,debtDate,procesId);
+        map.put("status",resp);
+        return map ;
     }
 
     @PostMapping(path = "/createProcessRecord",
             produces = "application/json")
-    public String createProcessRecord (@RequestBody OutwardRemittanceProcess outwardRemittanceProcess) {
-
-        return databaseService.createProcessCTQTRecord(outwardRemittanceProcess);
+    public Map<String, Object> createProcessRecord (@RequestBody OutwardRemittanceProcess outwardRemittanceProcess) {
+        Map<String,Object> map = new HashMap<>();
+        String resp =  databaseService.createProcessCTQTRecord(outwardRemittanceProcess);
+        map.put("status",resp);
+        return map ;
     }
 
 
